@@ -1,16 +1,17 @@
-import React, {Component} from 'react';
-import {NavLink} from 'react-router-dom'
+import React, { Component } from 'react';
+import Navigation from './header/Navigation'
+import Logo from './header/Logo'
+
 
 class Header extends Component {
-	render() {
-		return(
-			<div>
-				<NavLink to="/">Home</NavLink>
-				<NavLink to="/About">About</NavLink>
-				<NavLink to="/Contact">Contact</NavLink>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <header>
+        <Logo />
+        <Navigation />
+      </header>
+    );
+  }
 }
 
-export default Header
+export default Header;
