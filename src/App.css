@@ -1,28 +1,50 @@
-.App {
-  text-align: center;
+.sliderMain {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.sliderContainer {
+  transition: all 1s ease;
+ 
+  white-space: nowrap;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.slider {
+  display: inline-block;
+}
+
+.slider img {
+  height: auto;
+  width: 100%;
+}
+
+
+.arrow {
+  transition: .2s ease;
+  cursor: pointer;
   color: white;
+  font-size: 100px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  opacity: .7;
 }
 
-.App-title {
-  font-size: 1.5em;
+.arrow:hover {
+  opacity: 1;
+  color: #4cb2da;
 }
 
-.App-intro {
-  font-size: large;
+.leftArrow {
+  left: 3%;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.rightArrow {
+  right: 3%;
 }
+
