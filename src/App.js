@@ -1,78 +1,67 @@
 import React, { Component } from 'react';
+import axios from 'axios'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
-//Import slider images
-import image from './slider-image/image.jpg';
-import image2 from './slider-image/image2.jpg';
-import image3 from './slider-image/image3.jpg';
-import image4 from './slider-image/image4.jpg';
+import Navigation from './components/Navigation';
+import Main from './components/Main';
+import Bottom from './components/Bottom';
 
-//Count and percentage start count
-var count = 0;
-var amount = 0
+
+import Home from './components/Home/Home';
+import Bag from './components/Bag/Bag';
+import Pokedex from './components/Pokedex/Pokedex';
+import Pokemon from './components/Pokemon/Pokemon';
+
 
 class App extends Component {
+  render() {
+    const styleNavigation = {
+      position: 'absolute',
+      left: '0px',
+      height: '100%',
+      width: '30%',
+      background: '#333',
+    }
 
-  //Set state and condition for class
-  state = {
-    transform: 'translate(0%)',
-  }
+    const styleMain = {
+      position: 'absolute',
+      top: '0px',
+      right: '0px',
+      height: '100%',
+      width: '70%',
+      background: '#345',
+    }
 
-  //Slide slider to the left
-  left = () => {
-    count-=1
-    amount+=100
-    if(count < -4) {
-      count = 0;
-      amount = 0
+    const stylebottom = {
+      display: 'none',
+      position: 'absolute',
+      bottom: '0px',
+      right: '0px',
+      height: '30%',
+      width: '70%',
+      background: '#777',
     }
    
-    this.setState({
-      transform: `translate(${amount}%)`,
-    })
-  }
-
-  //Slide slider to the right
-  right = () => {
-    count+=1
-    amount-=100
-    if(count > 3) {
-      count = 0;
-      amount = 0
-    }
-    
-    this.setState({
-      transform: `translate(${amount}%)`,
-    })
-  }
-
-  // Need tylers help to hide left arrow if count is zero
-  test() {
-    if(count === 0) {
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
-
-  render() {
-    var z  = this.test();
-    console.log(this.state.hideArrow)
     return (
       <div className="App">
-      <div className="sliderMain">
-          <h1 className={`fa fa-chevron-circle-left leftArrow arrow ${z ? 'arrowActive': 'arrowInactive'}`} onClick={this.left}></h1>
-          <h1 className={`fa fa-chevron-circle-right rightArrow arrow `}  onClick={this.right}></h1>
-          <div className="sliderContainer"  style={this.state}>
-            <div className="slider1 slider"><img src={image} /></div>
-            <div className="slider2 slider"><img src={image2} /></div>
-            <div className="slider3 slider"><img src={image3} /></div>
-            <div className="slider4 slider"><img src={image4} /></div>
-          </div>
+        <BrowserRouter>
+        <div>
+          <Navigation style={styleNavigation}/>
+          <Switch>
+            <Route path="/" component={Home} exact />
+            <Route path="/Pokedex" component={Pokedex} />
+            <Route path="/Pokemon" component={Pokemon} />
+            <Route path="/Bag" component={Bag} />
+          </Switch>
+          <Bottom styles={stylebottom} />
         </div>
+        </BrowserRouter>
+
       </div>
     );
   }
 }
 
 export default App;
+
+
