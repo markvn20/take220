@@ -13,12 +13,17 @@ import  Footer from './Components/Footer';
 
 import './App.css';
 
+
+const height = {
+  height: '100%',
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-          <div>
+          <div style={height}>
             <Header />
             <Switch>
               <Route path="/" component={Home} exact />

@@ -14,31 +14,28 @@ class Section1 extends Component {
 	}
 
 	componentDidMount() {
-		setTimeout(() => {
-	  this.setState({count: this.state.count + 1});
-	  if(this.state.count > 4) {
-	  	this.setState({count: 1});
-	  }
-	}, 3000);
+		this.interval = setInterval(() => {
+		  this.setState({count: this.state.count + 1});
+		  if(this.state.count > 4) {
+		  	this.setState({count: 1});
+		  }
+		}, 4000)
+	}
+
+	componentWillUnmount() {
+	  clearInterval(this.interval);
 	}
 
 	imageClass = (value) => {
 		return ((value == this.state.count) ? 'active': 'defaults');
 	}
+
 	render() {
 	const image = {
 	backgroundImage1: `url(${img1})`,
 	backgroundImage2: `url(${img2})`,
 	backgroundImage3: `url(${img3})`,
 	backgroundImage4: `url(${img4})`,
-	}
-
-	const defaults = {
-		display: 'none'
-	}
-
-	const active = {
-		display: 'block'
 	}
 
 	const backgroundImage1 = {
@@ -59,14 +56,20 @@ class Section1 extends Component {
 
 	const sectionStyle = {
 		position: 'absolute',
-		padding: '40% 0 0',
 		height: '100%',
 		width: '100%',
+		backgroundPosition: '50% 50%',
+		backgroundRepeat: 'no-repeat',
+		backgroundAttachment: 'fixed',
 	}
 
+	const height = {
+		height: '70%',
+		position: 'relative',
+	}
 	
 		return (
-			<div style={{'position': 'relative'}} className="backgroundContainer">
+			<div style={height} className="backgroundContainer">
 				<div className={[this.imageClass('1'), "main-class"].join(' ')} style={Object.assign({}, sectionStyle, backgroundImage1)}>{this.state.count}</div>
 				<div className={this.imageClass('2')} style={Object.assign({}, sectionStyle, backgroundImage2)}>{this.state.count}</div>
 				<div className={this.imageClass('3')} style={Object.assign({}, sectionStyle, backgroundImage3)}>{this.state.count}</div>
